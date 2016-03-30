@@ -116,7 +116,7 @@ for i in range(0,50000):
     #print redcount/3072, greencount/3072, bluecount/3072,label_names[lind]
     X_train.append([redcount/3072, greencount/3072, bluecount/3072,max(imgdt[:1024]),min(imgdt[:1024]),max(imgdt[1024:2048]),min(imgdt[1024:2048]),max(imgdt[2048:3072]),min(imgdt[2048:3072])])
     #y_train.append(label_names[lind])
-    print X_train , y_train
+    #X_train , y_train
 
 
 # In[9]:
@@ -139,7 +139,7 @@ for i in range(0,10000):
     #print redcount/3072, greencount/3072, bluecount/3072,label_names[lind]
     X_test.append([redcount/3072, greencount/3072, bluecount/3072,max(imgdt[:1024]),min(imgdt[:1024]),max(imgdt[1024:2048]),min(imgdt[1024:2048]),max(imgdt[2048:3072]),min(imgdt[2048:3072])])
     #y_test.append(label_names[lind])
-    print X_test ,y_test
+    #X_test ,y_test
 
 
 # In[10]:
