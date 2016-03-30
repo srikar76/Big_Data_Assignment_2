@@ -3,7 +3,7 @@
 
 # In[1]:
 
-get_ipython().magic(u'matplotlib inline')
+#get_ipython().magic(u'matplotlib inline')
 import cPickle
 import numpy as np
 import matplotlib.pyplot as plt
@@ -38,7 +38,7 @@ my_data = {'data': unpickle("data_batch_1")['data'], 'labels': unpickle("data_ba
 for each in range(2, 6):
     my_data['data'] = np.concatenate((my_data['data'], unpickle("data_batch_" + str(each))['data']), axis=0)
     my_data['labels'] = np.concatenate((my_data['labels'], unpickle("data_batch_" + str(each))['labels']), axis=0)
-my_data
+print my_data
 
 
 # In[4]:
@@ -47,7 +47,7 @@ my_data
 data = my_data['data']
 labels = my_data['labels']
 label_names = unpickle("batches.meta")['label_names']
-
+print data
 
 # In[29]:
 
@@ -58,7 +58,7 @@ test_data = test_data_dict['data']
 test_labels = test_data_dict['labels']
 X_test = []
 y_test = test_data_dict['labels']
-test_data_dict
+print test_data_dict
 
 
 # In[6]:
@@ -119,7 +119,7 @@ for i in range(0,50000):
     #print redcount/3072, greencount/3072, bluecount/3072,label_names[lind]
     X_train.append([redcount/3072, greencount/3072, bluecount/3072,max(imgdt[:1024]),min(imgdt[:1024]),max(imgdt[1024:2048]),min(imgdt[1024:2048]),max(imgdt[2048:3072]),min(imgdt[2048:3072])])
     #y_train.append(label_names[lind])
-    #print X_train , y_train
+    print X_train , y_train
 
 
 # In[9]:
@@ -142,7 +142,7 @@ for i in range(0,10000):
     #print redcount/3072, greencount/3072, bluecount/3072,label_names[lind]
     X_test.append([redcount/3072, greencount/3072, bluecount/3072,max(imgdt[:1024]),min(imgdt[:1024]),max(imgdt[1024:2048]),min(imgdt[1024:2048]),max(imgdt[2048:3072]),min(imgdt[2048:3072])])
     #y_test.append(label_names[lind])
-    #print X_test ,y_test
+    print X_test ,y_test
 
 
 # In[10]:
@@ -152,7 +152,7 @@ X = np.array(X_train)
 pca = PCA(n_components=9)
 abc = pca.fit_transform(X)
 pca1 = pca.score(X)
-abc,pca1
+print abc,pca1
 
 
 # In[11]:
@@ -270,7 +270,16 @@ def get_stats(class_name):
 
 # In[17]:
 
-get_stats('airplane'), get_stats('automobile'),get_stats('bird'),get_stats('cat'), get_stats('deer'),get_stats('dog'),get_stats('frog'),get_stats('horse'),get_stats('ship'),get_stats('truck')
+print get_stats('airplane')
+print get_stats('automobile')
+print get_stats('bird')
+print get_stats('cat')
+print get_stats('deer')
+print get_stats('dog')
+print get_stats('frog')
+print get_stats('horse')
+print get_stats('ship')
+print get_stats('truck')
 
 
 # In[18]:
@@ -308,7 +317,7 @@ def tstat(class_name1, class_name2):
 
 # In[19]:
 
-tstat('airplane','deer')
+print tstat('airplane','deer')
 
 
 # In[20]:
@@ -332,7 +341,7 @@ def get_count(class_name):
 
 # In[23]:
 
-get_count('truck')
+print get_count('truck')
 
 
 # In[24]:
@@ -348,7 +357,7 @@ def get_prob(class_name):
 
 # In[25]:
 
-get_prob('truck')
+print get_prob('truck')
 
 
 # In[26]:
