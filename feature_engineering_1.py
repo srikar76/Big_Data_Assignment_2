@@ -6,21 +6,18 @@
 #get_ipython().magic(u'matplotlib inline')
 import cv2
 import cPickle
+import sklearn
 import numpy as np
+from math import sqrt
+from scipy import stats
+import scipy.stats as st
+from collections import Counter
 import matplotlib.pyplot as plt
-from matplotlib.mlab import PCA
+from sklearn.cluster import KMeans
+from scipy.stats.mstats import mode
+from sklearn.decomposition import PCA
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.linear_model import LogisticRegression
-from sklearn.decomposition import PCA
-from scipy import stats
-from sklearn.cluster import KMeans
-from sklearn.linear_model import SGDClassifier
-from collections import Counter
-from scipy.stats.mstats import mode
-import sklearn
-from sklearn.naive_bayes import MultinomialNB
-from math import sqrt
-import scipy.stats as st
 
 
 # In[9]:
@@ -318,7 +315,7 @@ print get_count('truck')
 # In[31]:
 
 # function to get the probability of a particular class of images with the cluster number that it is present 
-from collections import Counter
+
 def get_prob(class_name):
     c = Counter(k_means.predict(class_data_test['truck']))
     clusternumber = c.most_common(1)[0][0]

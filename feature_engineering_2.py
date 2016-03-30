@@ -5,21 +5,18 @@
 
 #get_ipython().magic(u'matplotlib inline')
 import cPickle
+import sklearn
 import numpy as np
+from math import sqrt
+from scipy import stats
+import scipy.stats as st
+from collections import Counter
 import matplotlib.pyplot as plt
-from matplotlib.mlab import PCA
+from sklearn.cluster import KMeans
+from scipy.stats.mstats import mode
+from sklearn.decomposition import PCA
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.linear_model import LogisticRegression
-from math import sqrt
-from sklearn.decomposition import PCA
-from scipy import stats
-from sklearn.cluster import KMeans
-from sklearn.linear_model import SGDClassifier
-from collections import Counter
-from scipy.stats.mstats import mode
-import sklearn
-import scipy.stats as st
-
 
 # In[2]:
 
