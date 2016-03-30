@@ -35,6 +35,7 @@ my_data = {'data': unpickle("data_batch_1")['data'], 'labels': unpickle("data_ba
 for each in range(2, 6):
     my_data['data'] = np.concatenate((my_data['data'], unpickle("data_batch_" + str(each))['data']), axis=0)
     my_data['labels'] = np.concatenate((my_data['labels'], unpickle("data_batch_" + str(each))['labels']), axis=0)
+print "Data,   Lables,   Lable Names"
 print my_data
 
 
@@ -44,6 +45,7 @@ print my_data
 data = my_data['data']
 labels = my_data['labels']
 label_names = unpickle("batches.meta")['label_names']
+print " Image  Data"
 print data
 
 # In[29]:
@@ -55,6 +57,7 @@ test_data = test_data_dict['data']
 test_labels = test_data_dict['labels']
 X_test = []
 y_test = test_data_dict['labels']
+print "Test Data Dictionary"
 print test_data_dict
 
 
@@ -149,6 +152,7 @@ X = np.array(X_train)
 pca = PCA(n_components=9)
 abc = pca.fit_transform(X)
 pca1 = pca.score(X)
+print "PCA of Feature Vectors"
 print abc,pca1
 
 
@@ -266,7 +270,7 @@ def get_stats(class_name):
 
 
 # In[17]:
-
+print "Mean,  Variance,   Standard Deviation,     Size"
 print get_stats('airplane')
 print get_stats('automobile')
 print get_stats('bird')
@@ -313,20 +317,21 @@ def tstat(class_name1, class_name2):
 
 
 # In[19]:
-
+print " T-value,   Degree of Freedom,    P-Value"
 print tstat('airplane','deer')
 
 
 # In[20]:
 
 #performing k-means clustering with 10 clusters each for each class of images
+print "K-means Clustering on CIFAR-10"
 k_means = KMeans(n_clusters=10, n_jobs=8)
-k_means.fit(X_train)
+print k_means.fit(X_train)
 
 
 # In[21]:
-
-k_means.predict(class_data_test['airplane'])
+print "Predicting the respective class of images in cluster"
+print k_means.predict(class_data_test['airplane'])
 
 
 # In[22]:
@@ -337,7 +342,7 @@ def get_count(class_name):
 
 
 # In[23]:
-
+print " Cluster Number AND Number of Images of Particular Class"
 print get_count('truck')
 
 
@@ -353,7 +358,7 @@ def get_prob(class_name):
 
 
 # In[25]:
-
+print "Cluster Number AND Probability"
 print get_prob('truck')
 
 
@@ -362,5 +367,6 @@ print get_prob('truck')
 # performing multinomial logistic regression to find out the accuracy of the classification of images in the training set with the testing set
 model = LogisticRegression(solver = "lbfgs", multi_class = "multinomial")
 model = model.fit(X_train, y_train)
+print "Accuracy Score"
 print model.score(X_test, y_test)
 

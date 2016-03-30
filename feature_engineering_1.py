@@ -37,6 +37,7 @@ my_data = {'data': unpickle("data_batch_1")['data'], 'labels': unpickle("data_ba
 for each in range(2, 6):
     my_data['data'] = np.concatenate((my_data['data'], unpickle("data_batch_" + str(each))['data']), axis=0)
     my_data['labels'] = np.concatenate((my_data['labels'], unpickle("data_batch_" + str(each))['labels']), axis=0)
+print "Data ,Lables, Lable Names"
 print my_data
 
 # In[11]:
@@ -45,6 +46,7 @@ print my_data
 data = my_data['data']
 labels = my_data['labels']
 label_names = unpickle("batches.meta")['label_names']
+print " Image  Data"
 print data
 
 # In[12]:
@@ -62,7 +64,8 @@ test_data = {}
 test_data.update(unpickle("test_batch"))
 X_test = test_data['data']
 y_test = test_data['labels']
-
+print "Test Data Dictionary"
+print test_data
 
 # In[14]:
 
@@ -77,17 +80,13 @@ for item in X_train:
 fig1 = plt.figure() 
 ax = Axes3D(fig1) 
 pltData = [x1,y1,z1] 
-ax.scatter(pltData[0], pltData[1], pltData[2], 'bo') 
-
-
+ax.scatter(pltData[0], pltData[1], pltData[2], 'bo')
 xLine = ((min(pltData[0]), max(pltData[0])), (0, 0), (0,0)) 
 ax.plot(xLine[0], xLine[1], xLine[2], 'r') 
 yLine = ((0, 0), (min(pltData[1]), max(pltData[1])), (0,0)) 
 ax.plot(yLine[0], yLine[1], yLine[2], 'r')
 zLine = ((0, 0), (0,0), (min(pltData[2]), max(pltData[2])))
-ax.plot(zLine[0], zLine[1], zLine[2], 'r') 
- 
- 
+ax.plot(zLine[0], zLine[1], zLine[2], 'r')  
 ax.set_xlabel("x-axis") 
 ax.set_ylabel("y-axis")
 ax.set_zlabel("Z-axis")
@@ -100,6 +99,7 @@ plt.show()
 #performs canny edge detection
 edges ={}
 edges = cv2.Canny(data,100,200)
+print "Detected Edges"
 print edges
 
 
@@ -114,6 +114,7 @@ kp = orb.detect(data,None)
 # compute the descriptors with ORB
 kp, des = orb.compute(data, kp)
 kp
+print "Key point Descriptors"
 print des
 
 
@@ -124,6 +125,7 @@ X = np.array(X_train)
 pca = PCA(n_components=9)
 abc = pca.fit_transform(X)
 pca1 = pca.score(X)
+print "PCA of Feature Vectors"
 print abc,pca1
 
 
@@ -237,7 +239,7 @@ def get_stats(class_name):
 
 
 # In[24]:
-
+print "Mean,  Variance,  Standard Deviation,  Size"
 print get_stats('airplane')
 print get_stats('automobile')
 print get_stats('bird')
@@ -284,20 +286,21 @@ def tstat(class_name1, class_name2):
 
 
 # In[26]:
-
+print " T-value  Degree of Freedom   P-Value"
 print tstat('airplane','deer')
 
 
 # In[27]:
 
 #performing k-means clustering with 10 clusters each for each class of images
+print "K-means Clustering on CIFAR-10"
 k_means = KMeans(n_clusters=10, n_jobs=8)
-k_means.fit(X_train)
+print k_means.fit(X_train)
 
 
 # In[28]:
-
-k_means.predict(class_data_test['airplane'])
+print "Predicting the respective class of images in cluster"
+print k_means.predict(class_data_test['airplane'])
 
 
 # In[29]:
@@ -308,7 +311,7 @@ def get_count(class_name):
 
 
 # In[30]:
-
+print " Cluster Number AND Number of Images of Particular Class"
 print get_count('truck')
 
 
@@ -324,7 +327,7 @@ def get_prob(class_name):
 
 
 # In[32]:
-
+print "Cluster Number AND Probability"
 print get_prob('truck')
 
 
@@ -333,5 +336,6 @@ print get_prob('truck')
 # performing multinomial logistic regression to find out the accuracy of the classification of images in the training set with the testing set
 model = LogisticRegression(solver = "lbfgs", multi_class = "multinomial")
 model = model.fit(X_train, y_train)
+print "Accuracy Score"
 print model.score(X_test, y_test) 
 
